@@ -1,0 +1,67 @@
+## ASP.NET Core ##
+# User-specific files
+.idea/
+.vscode/
+
+# Windows Installer files
+Thumbs.db
+ehthumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# ASP.NET Core build and publish outputs
+wwwroot/
+artifacts/
+
+# Microsoft Visual Studio for Mac
+.vscode/
+
+# Rider
+.idea/
+
+# .NET Core directory
+.project.lock.json
+.project.fragment.lock.json
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]istro/
+[Dd]eploy/
+[Dd]ebug-*
+[Dd]evelopment/
+
+# Log files
+*.log
+
+# User-specific files
+*.swp
+
+# JetBrains Rider
+.idea/
+
+# ASP.NET temporary files
+.tmp/
