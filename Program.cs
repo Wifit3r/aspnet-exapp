@@ -1,14 +1,21 @@
 using ASPNetExapp.Services;
+using ASPNetExapp.Data;
+using Microsoft.EntityFrameworkCore;
 
 // Створюємо екземпляр класу WebApplication, який дозволяє створювати веб-додатки ASP.NET Core
 var builder = WebApplication.CreateBuilder(args);
+
+// Додаємо підключення до бази даних
+var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // Додаємо підтримку контролерів
 builder.Services.AddControllers();
 // Додаємо підтримку Swagger
 builder.Services.AddSwaggerGen();
 // Додаємо кастомний сервіс
-builder.Services.AddSingleton<UserService>();
+builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 
