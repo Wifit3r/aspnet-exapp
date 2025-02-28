@@ -1,5 +1,6 @@
 using ASPNetExapp.Services;
 using ASPNetExapp.Data;
+using ASPNetExapp.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 // Створюємо екземпляр класу WebApplication, який дозволяє створювати веб-додатки ASP.NET Core
@@ -28,5 +29,20 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapControllers(); // Важливо для роботи контролерів! Це по суті налаштування маршрутизації
+
+// Додавання middleware для обробки помилок
+app.UseMiddleware<ServerErrorHandlingMiddleware>();
+
+// Додаємо наш кастомний middleware
+app.UseMiddleware<RequestLoggingMiddleware>();
+
+// 
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/users"), appBuilder =>
+{
+    appBuilder.UseMiddleware<UserRequestLoggingMiddleware>();
+});
+
+// Додаємо наш кастомний middleware
+app.UseMiddleware<SimpleAuthenticationMiddleware>();
 
 app.Run();

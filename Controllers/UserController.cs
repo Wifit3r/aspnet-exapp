@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ASPNetExapp.Models;
 using ASPNetExapp.Services;
+using ASPNetExapp.Middlewares;
 
 namespace UsersApi.Controllers;
 
@@ -25,6 +26,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [UserIdValidationActionFilter]
     public ActionResult<User> GetUserById(int id)
     {
         var user = _userService.GetUserById(id);
@@ -39,6 +41,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPatch("{id}")]
+    [UserIdValidationActionFilter]
     public ActionResult UpdateUser(int id, [FromBody] User updatedUser)
     {
         if (!_userService.UpdateUser(id, updatedUser))
@@ -48,6 +51,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [UserIdValidationActionFilter]
     public ActionResult DeleteUser(int id)
     {
         if (!_userService.DeleteUser(id))
